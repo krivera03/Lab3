@@ -9,17 +9,35 @@ int es_identidad(int m [][SIZE]);
 int tiene_fila_completa(int m[][SIZE]);
 int tiene_columna_completa(int m[][SIZE]);
 
+
+//Matriz ingresada 
 int main(void) {
+
+    srand(time(NULL)); //Inicializar semilla
+
     int m[SIZE][SIZE] = {
         {1, 0, 0, 0},
-        {1, 1, 0 ,0},
-        {1, 0, 1, 0},
-        {1, 0, 0, 1}
+        {0, 1, 0 ,0},
+        {0, 0, 1, 0},
+        {0, 0, 0, 1}
     };
 
-    int i, j;
 
-    printf("Matriz ingresada:\n");  //Imprime matriz ingresada
+//Matriz aleatoria
+
+int m2[SIZE][SIZE];
+
+int i, j;
+
+for (i = 0; i < SIZE; i++) { 
+    for (j = 0; j < SIZE; j++) {
+        m2[i][j] = rand() % 2;   //Genera matriz aleatoria
+    }
+}
+
+
+    //Imprime matriz ingresada
+    printf("Matriz ingresada:\n");  
 
     for (i = 0; i < SIZE; i++) {
 
@@ -31,9 +49,11 @@ int main(void) {
         printf("\n");
     }
 
-    //Imprime la cuenta de unos en la fila 1, columna 1
-    printf("Unos en la fila: %d\n", contar_unos_fila(m, 0));
-    printf("Unos en la columna: %d\n", contar_unos_columna(m, 1));
+    //Resultados matriz ingresada
+
+    //Imprime la cuenta de unos en la fila 0, columna 0
+    printf("Unos en la fila 0: %d\n",contar_unos_fila(m, 0));
+    printf("Unos en la columna 0: %d\n", contar_unos_columna(m, 0));
 
     // Imprime si la matriz es identidad
     if (es_identidad(m)) {
@@ -56,9 +76,51 @@ int main(void) {
         printf("Tiene columna completa de unos: no\n");
     }
 
+
+    //Imprime matriz aleatoria
+    printf("Matriz aleatoria:\n");
+
+    for (i = 0; i < SIZE; i++) {
+
+        for (j = 0; j < SIZE; j++) {
+
+            printf("%d ", m2[i][j]);
+        }
+
+        printf("\n");
+    }
+
+    //Resultados matriz aleatoria
+
+    //Imprime la cuenta de unos en la fila 0, columna 0
+    printf("Unos en la fila 0: %d\n",contar_unos_fila(m2, 0));
+    printf("Unos en la columna 0: %d\n", contar_unos_columna(m2, 0));
+
+    // Imprime si la matriz es identidad
+    if (es_identidad(m2)) { 
+        printf("Es matriz identidad: si\n");
+    } else {
+        printf("Es matriz identidad: no\n");
+    }
+
+    // Imprime si tiene una fila completa de unos
+    if (tiene_fila_completa(m2)) { 
+        printf("Tiene fila completa de unos: si\n");
+    } else {
+        printf("Tiene fila completa de unos: no\n");
+    }
+
+    // Imprime si tiene una columna completa de unos
+    if (tiene_columna_completa(m2)) { 
+        printf("Tiene columna completa de unos: si\n");
+    } else {
+        printf("Tiene columna completa de unos: no\n");
+    }
+
     return 0;
 
 }
+
 
 
 // Contar cuantos unos hay en una fila
