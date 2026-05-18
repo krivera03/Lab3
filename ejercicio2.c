@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
-#define SIZE 4
+#define SIZE 5
 
 int contar_unos_fila(int m[][SIZE], int fila);
 int contar_unos_columna(int m[][SIZE], int col);
@@ -16,10 +16,11 @@ int main(void) {
     srand(time(NULL)); //Inicializar semilla
 
     int m[SIZE][SIZE] = {
-        {1, 0, 0, 0},
-        {0, 1, 0 ,0},
-        {0, 0, 1, 0},
-        {0, 0, 0, 1}
+        {1, 0, 0, 0, 0},
+        {0, 1, 0, 0, 0},
+        {0, 0, 1, 0, 0},
+        {0, 0, 0, 1, 0},
+        {0, 0, 0, 0, 1}
     };
 
 
