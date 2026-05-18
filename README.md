@@ -7,7 +7,7 @@ C09197
 
 ## Ejercicio 1
 ### Correción de error
-El código que calcula potencias enteras tiene un problema dentro del `while` en `int exp = exp -1;` que genera una nueva variable local y no la modifica entonces el `exp` nunca cambia y el ciclo se vuelve infinito. 
+El código que calcula potencias enteras presenta un problema dentro del ciclo `while`. En la línea `int exp = exp - 1;` se crea una nueva variable local llamada `exp` en lugar de modificar la variable original. Como consecuencia, el valor del exponente nunca cambia, la condición del `while` siempre permanece verdadera y el ciclo se vuelve infinito.
 
 ```C
 #include <stdio.h>
@@ -27,6 +27,51 @@ int main(void) {
     return 0;
 }
 ```
+
+### Ingreso de variables por el usuario
+Se genera el siguiente código para que el usuario pueda ingresar la base, validando que el número ingresado sea diferente de cero, y el exponente, verificando que el número sea mayor que cero.  
+
+Estas validaciones se realizan mediante el uso del ciclo `do while`.
+
+```C
+int main(void){ 
+    int base, exp;
+ 
+    // Ingresar y validar base distinta de cero
+    do {
+        printf("Ingrese la base de la potencia: ");
+        scanf("%d", &base);
+        
+        if (base == 0) { 
+        printf("Número inválido, la base debe ser diferente de cero. ");
+        }
+    } while (base == 0);
+
+    // Ingresar y validar exponente mayor a cero
+    do {
+        printf("Ingrese el exponente de la potencia: ");
+        scanf("%d", &exp);
+
+        if (exp < 0) {
+            printf("Número inválido, el exponente debe ser mayor a cero. ");
+        }
+
+    } while (exp < 0);
+   
+    // Imprime el resultado de la potencia
+    printf("%d^%d = %d\n", base, exp, potencia(base, exp));
+
+    return 0;
+}
+```
+
+En la siguiente imagen se puede observar el resultado del código anterior al digitar diferentes números confirmando que el código funciona correctamente.
+
+![imagen](./imagen1.png)
+
+
+
+
 
 
 ## Ejercicio 2
