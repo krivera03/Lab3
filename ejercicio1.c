@@ -4,7 +4,7 @@ int potencia(int base, int exp) {
     int resultado = 1;
     while (exp > 0) {
         resultado = resultado * base;
-        int exp = exp - 1;
+        exp = exp - 1;     // Se elimina el int que generaba una nueva variable
     }
     return resultado;
 }
