@@ -17,8 +17,28 @@ int main(void) {
         {0, 0, 0, 1}
     };
 
+    int i, j;
+
+    printf("Matriz ingresada:\n");
+
+    for (i = 0; i < SIZE; i++) {
+
+        for (j = 0; j < SIZE; j++) {
+
+            printf("%d ", m[i][j]);
+        }
+
+        printf("\n");
+    }
+
     printf("Unos en la fila: %d\n", contar_unos_fila(m, 0));
     printf("Unos en la columna: %d\n", contar_unos_columna(m, 1));
+
+    if (es_identidad(m)) {
+        printf("Es matriz identidad: si\n");
+    } else {
+        printf("Es matriz identidad: no\n");
+    }
 
     return 0;
 
@@ -53,4 +73,33 @@ int contar_unos_columna(int m[][SIZE], int col) {
     }
 
     return contador;
+}
+
+// Verifica si la matriz es identidad
+int es_identidad(int m[][SIZE]) {
+
+    int i, j;
+
+    for (i = 0; i < SIZE; i++) {
+
+        for (j = 0; j < SIZE; j++) {
+
+            // Diagonal
+            if (i == j) {
+
+                if (m[i][j] != 1) {
+                    return 0;
+                }
+
+            } else {
+
+                // Numeros fuera de la diagonal
+                if (m[i][j] != 0) {
+                    return 0;
+                }
+            }
+        }
+    }
+
+    return 1;
 }
