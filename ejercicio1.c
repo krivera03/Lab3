@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-
+// Calcular potencia
 int potencia(int base, int exp) { 
     int resultado = 1;
 
@@ -11,6 +11,17 @@ int potencia(int base, int exp) {
     return resultado;
 }
 
+// Función para verificar si el resultado es par
+int es_par(int n) {
+
+    if (n % 2 == 0) {
+        return 1;
+    } else {
+        return 0;
+    }
+}
+
+//Ingresar variables e imprimir resultados
 int main(void){ 
     int base, exp;
  
@@ -38,5 +49,13 @@ int main(void){
     // Imprime el resultado de la potencia
     printf("%d^%d = %d\n", base, exp, potencia(base, exp));
 
+    // Verifica si el resultado es par 
+    if (es_par(potencia(base, exp))) { 
+        printf("El resultado es par.\n");
+    } else {
+        printf("El resultado es impar.\n");
+    }
+
     return 0;
 }
+

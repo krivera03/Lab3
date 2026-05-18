@@ -69,8 +69,35 @@ En la siguiente imagen se puede observar el resultado del código anterior al di
 
 ![imagen](./imagen1.png)
 
+### Verificación de si el resultado es par o impar
+Por medio de la función `es_par(int n)` se verifica si el resultado obtenido es par o impar. Para ello, se divide el número entre dos y se comprueba si el residuo de la división es igual a cero.  
 
+Si el residuo es cero, el número es par; en caso contrario, el número es impar, como se muestra en el siguiente código agregado.
 
+```C
+// Función para verificar si el resultado es par
+int es_par(int n) {
+
+    if (n % 2 == 0) {
+        return 1;
+    } else {
+        return 0;
+    }
+}
+```
+Después de imprimir el resultado, se utiliza una estructura condicional `if` para mostrar si el número obtenido es par o impar, según corresponda.
+
+```C
+    // Verifica si el resultado es par 
+    if (es_par(potencia(base, exp))) { 
+        printf("El resultado es par.\n");
+    } else {
+        printf("El resultado es impar.\n");
+    }
+```
+Se prueban ambos casos para verificar el correcto funcionamiento del código.
+
+![imagen2](./imagen2.png)
 
 
 
