@@ -32,6 +32,18 @@ void imprimir_estado(EstadoSensor e){
         printf("Fallo");
 }
 
+//Contar estados 
+int contar_estado(Lectura s [] , int n, EstadoSensor e){
+    int contador = 0;
+
+    for (int i = 0; i < n; i++){
+        if (s[i].estado == e) {
+            contador ++;
+        }
+    }
+    return contador;
+}
+
 int main(void){
 
         Lectura s[MAX_SENSORES];
@@ -50,7 +62,7 @@ int main(void){
         }
 
         //Tabla de resultado
-        printf("\n--- Tabla de Lecturas ---\n");
+        printf("\n Tabla de Lecturas \n");
         printf("ID\tValor\tEstado\n");
 
         for (int i = 0; i < n; i++){
@@ -58,6 +70,13 @@ int main(void){
             imprimir_estado(s[i].estado);
             printf("\n");
         }
+
+        //Conteo de estados
+        printf("\n Conteo de Estados \n");
+        printf("Normal: %d\n", contar_estado(s, n, NORMAL));
+        printf("Alerta: %d\n", contar_estado(s, n, ALERTA));
+        printf("Fallo: %d\n", contar_estado(s, n, FALLO));
+      
     
     return 0;
 }
@@ -65,6 +84,5 @@ int main(void){
 
 
 
-//int     contar_estado(Lectura s [] , int n, EstadoSensor e);
 //int     lectura_extrema(Lectura s[] , int n);
 
