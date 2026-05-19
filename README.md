@@ -4,6 +4,11 @@ Karen Rivera Angulo
 C09197
 
 ---
+El presente laboratorio cuenta con tres ejercicios en los que se calculan potencias, se trabaja con matrices binarias y se realiza la toma de datos de sensores de temperatura.
+
+La mayoría de las funciones se implementan mediante ciclos `for`, en los cuales se recorren los datos desde 0 hasta `n-1`. Con base en este recorrido, se realizan comparaciones de valores, toma de datos y cálculos utilizando condicionales `if`.
+
+Los códigos mostrados corresponden a las funciones implementadas; sin embargo, no representan el código completo de cada ejercicio.
 
 ## Ejercicio 1
 ### Correción de error
@@ -301,3 +306,106 @@ Dado que se utiliza la constante `SIZE` en cada función, el recorrido por las f
 ![imagen6](./imagen6.png) 
 
 ## Ejercicio 3
+
+### Clasificar estados de los sensores 
+Con el siguiente código se clasifican los estados de acuerdo con los rangos establecidos, mediante el uso de condiciones `if` y `else`.
+
+
+```C
+/ Clasificar valores según los rangos
+EstadoSensor clasificar (float valor) { 
+
+    if (valor >= 40.0 && valor <= 60.0)
+        return NORMAL;
+    else if ((valor >=20.0 && valor < 40.0) || (valor <= 60.0 && valor > 80.0))
+        return ALERTA;
+    else 
+        return FALLO;
+}
+```
+
+### Lecturas del usuario
+Seguidamente, se solicitan los datos del usuario por medio de ciclos `for`, los cuales imprimen las solicitudes de ingreso de datos y posteriormente muestran la tabla de resultados de acuerdo con la función mencionada anteriormente.
+
+
+```C
+Lectura s[MAX_SENSORES];
+        int n = MAX_SENSORES;
+
+        //Lecturas del usuario
+        for (int i = 0; i < n; i++){
+            printf("Ingrese el ID del sensor %d: ", i + 1);
+            scanf("%d", &s[i].id);
+
+            printf("Ingrese el valor del sensor %d: ", i + 1);
+            scanf("%f", &s[i].valor);
+
+            //Clasificar 
+            s[i].estado = clasificar(s[i].valor);
+        }
+
+        //Tabla de resultado
+        printf("\n Tabla de Lecturas \n");
+        printf("ID\tValor\tEstado\n");
+
+        for (int i = 0; i < n; i++){
+            printf("%d\t%.2f\t", s[i].id, s[i].valor);
+            imprimir_estado(s[i].estado);
+            printf("\n");
+        }
+```
+
+En la siguiente figura se ingresan los ID y los valores de 10 sensores, donde se determina la clasificación correspondiente a cada estado.
+
+El estado **Normal** corresponde a valores entre 40.0 y 60.0, **Alerta** a valores entre 20.0 y 40.0 o entre 60.0 y 80.0, y **Fallo** a valores menores que 20.0 o mayores que 80.0.
+
+Los resultados se presentan en una tabla que muestra el ID, el valor registrado y el estado correspondiente de cada sensor.
+
+![imagen7](./imagen7.png)
+
+### Contar estados 
+La función para contar estados inicia un contador en 0, el cual recorre los resultados y va sumando los estados según la clasificación realizada anteriormente.
+
+```C
+//Contar estados 
+int contar_estado(Lectura s [] , int n, EstadoSensor e){
+    int contador = 0;
+
+    for (int i = 0; i < n; i++){
+        if (s[i].estado == e) {
+            contador ++;
+        }
+    }
+    return contador;
+}
+```
+Nuevamente, se ingresan los datos de los sensores y el programa realiza el conteo de cuántos se encuentran en estado **Normal**, **Alerta** y **Fallo**, de acuerdo con los rangos implementados anteriormente.
+
+![imagen8](./imagen8.png)
+
+
+### Lectura del valor más alejado a 50.0 
+Finalmente, se genera el código que sea capaz de leer el valor que se encuentre más alejado de 50.0 por medio de la función matemática `fabs` siendo el valor absoluto del número, que recorre los datos por medio de un ciclo `for` hasta encontrar el más alejado.
+
+```C
+//Lectura extrema
+int     lectura_extrema(Lectura s[], int n) {  
+
+    int idx = 0;
+    float max_distancia = fabs(s[0].valor - 50.0);
+
+    for (int i = 1; i < n; i++){
+        float distancia = fabs(s[i].valor - 50.0);
+
+        if (distancia > max_distancia) {
+            max_distancia = distancia;
+            idx = i;
+        }
+    }
+    return idx;
+} 
+```
+
+En la siguiente figura se observan todas las funciones implementadas, con especial detalle en la función de lectura extrema, la cual encuentra el valor más alejado de 50.0 y muestra su ID y su valor correspondiente.
+
+![imagen9](./imagen9.png)
