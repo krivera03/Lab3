@@ -1,4 +1,7 @@
 #include <stdio.h>
+#include <math.h>
+
+
 #define MAX_SENSORES 10
 
 typedef enum { NORMAL, ALERTA, FALLO} EstadoSensor;
@@ -44,6 +47,23 @@ int contar_estado(Lectura s [] , int n, EstadoSensor e){
     return contador;
 }
 
+//Lectura extrema
+int     lectura_extrema(Lectura s[], int n) {  
+
+    int idx = 0;
+    float max_distancia = fabs(s[0].valor - 50.0);
+
+    for (int i = 1; i < n; i++){
+        float distancia = fabs(s[i].valor - 50.0);
+
+        if (distancia > max_distancia) {
+            max_distancia = distancia;
+            idx = i;
+        }
+    }
+    return idx;
+} 
+
 int main(void){
 
         Lectura s[MAX_SENSORES];
@@ -76,7 +96,13 @@ int main(void){
         printf("Normal: %d\n", contar_estado(s, n, NORMAL));
         printf("Alerta: %d\n", contar_estado(s, n, ALERTA));
         printf("Fallo: %d\n", contar_estado(s, n, FALLO));
-      
+
+        //Lectura extrema
+        int idx = lectura_extrema(s, n);
+
+        printf("\n Lectura del Valor Más Alejado de 50.0 \n");
+        printf("ID: %d\n", s[idx].id);
+        printf("Valor: %.2f\n", s[idx].valor);
     
     return 0;
 }
@@ -84,5 +110,4 @@ int main(void){
 
 
 
-//int     lectura_extrema(Lectura s[] , int n);
 
